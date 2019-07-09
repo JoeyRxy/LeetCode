@@ -85,28 +85,51 @@ void dostack(queue<int> in, stack<int> s, queue<int> out)
         dostack(in, s, out);
     }
 }
+
+class A
+{
+private:
+    int x;
+
+public:
+    A(int);
+    A();
+    ~A();
+};
+
+A::A(int x)
+{
+    this->x = x;
+}
+
+A::~A()
+{
+}
+
 int main()
 {
-    cout << "请输入1~n共n个数:";
-    while (cin >> n)
-    {
-        res = 0;
-        clear(in);
-        clear(out);
-        clear(s);
-        for (i = n; i >= 1; i--)
-            in.push(i);
-        dostack(in, s, out);
-        cout << "对应的出栈情况总数=" << res << endl;
-    }
-    cout << "1~n依次进栈时，使用递归函数所有的情况总数:" << endl;
-    for (i = 1; i < 15; i++)
-        cout << "n=" << i << "  " << getPermuStack(i, 0) << endl;
+    // cout << "请输入1~n共n个数:";
+    // while (cin >> n)
+    // {
+    //     res = 0;
+    //     clear(in);
+    //     clear(out);
+    //     clear(s);
+    //     for (i = n; i >= 1; i--)
+    //         in.push(i);
+    //     dostack(in, s, out);
+    //     cout << "对应的出栈情况总数=" << res << endl;
+    // }
+    // cout << "1~n依次进栈时，使用递归函数所有的情况总数:" << endl;
+    // for (i = 1; i < 15; i++)
+    //     cout << "n=" << i << "  " << getPermuStack(i, 0) << endl;
 
-    cout << endl
-         << "1~n依次进栈时，使用Catalan公式所有的情况总数:" << endl;
-    for (i = 1; i < 15; i++)
-        cout << "n=" << i << "  " << catalan(i) << endl;
-    system("pause");
-    return 0;
+    // cout << endl
+    //      << "1~n依次进栈时，使用Catalan公式所有的情况总数:" << endl;
+    // for (i = 1; i < 15; i++)
+    //     cout << "n=" << i << "  " << catalan(i) << endl;
+    // system("pause");
+    // return 0;
+    A a;
+    A a1(2);
 }

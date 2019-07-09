@@ -11,5 +11,8 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "files.associations": {
+        "iostream": "cpp"
+    }
 }

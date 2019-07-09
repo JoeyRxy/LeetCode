@@ -62,7 +62,7 @@ public class StackPopSequence {
     private Stack<Character> stack;
     private int N;
     private boolean[] marked;
-    private List<Character> tmp_ans;
+    private Stack<Character> tmp_ans;
     private List<List<Character>> ans;
 
     public StackPopSequence(String str) {
@@ -70,7 +70,7 @@ public class StackPopSequence {
         N = original.length;
         stack = new Stack<>();
         marked = new boolean[N];
-        tmp_ans = new ArrayList<>();
+        tmp_ans = new Stack<>();
         ans = new ArrayList<>();
         dfs(0);
     }
@@ -78,15 +78,19 @@ public class StackPopSequence {
     private void dfs(int idx) {
         if (idx == N) {
             char c = stack.pop();
-            tmp_ans.add(c);
+            tmp_ans.push(c);
             if (stack.isEmpty()) {
-                ans.add(tmp_ans);
-                tmp_ans = new ArrayList<>();
+                List<Character> _ans = new ArrayList<>();
+                for (char var : tmp_ans)
+                    _ans.add(var);
+                ans.add(_ans);
                 stack.push(c);
+                tmp_ans.pop();
                 return;
             }
             dfs(idx);
             stack.push(c);
+            tmp_ans.pop();
         } else {
             stack.push(original[idx]);
             dfs(idx + 1);
@@ -94,9 +98,10 @@ public class StackPopSequence {
             if (stack.isEmpty())
                 return;
             char c = stack.pop();
-            tmp_ans.add(c);
+            tmp_ans.push(c);
             dfs(idx);
             stack.push(c);
+            tmp_ans.pop();
         }
     }
 
@@ -110,7 +115,7 @@ public class StackPopSequence {
     }
 
     public static void main(String[] args) {
-        String s = "123";
+        String s = "1234";
         StackPopSequence t = new StackPopSequence(s);
         t.printAns();
     }
