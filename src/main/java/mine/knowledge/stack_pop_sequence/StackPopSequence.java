@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-@SuppressWarnings("unused")
 // TODO
 /**
  * StackPopSequence
  * <p>
- * DFS
+ * DFS：不用优化，没法优化
  * </p>
  * <p>
  * 两种思路：1.遍历所有可能的排列(2^n)，并利用一个线性时间的算法判断该排列是否可能出现
@@ -20,56 +19,20 @@ import java.util.Stack;
  */
 public class StackPopSequence {
 
-    // private int len;
-    // private String s;
+    // 1. 可以使用多个stack用来回溯时的记录，但是也可以使用一个stack，只要回溯的时候能够恢复状态；
+    // 整个过程中最关键的部分也就是回溯时的恢复问题了；
 
-    // private Stack<Character> stack, aux;
-
-    // public StackPopSequence(String s) {
-    // len = s.length();
-    // this.s = s;
-    // stack = new Stack<>();
-    // aux = new Stack<>();
-    // dfs(0);
-    // }
-
-    // public void dfs(int i) {
-    // if (i == len) {
-    // printStack();
-    // System.out.println();
-    // return;
-    // }
-    // // 放入
-    // stack.push(s.charAt(i));
-    // dfs(i + 1);
-    // // 不放入
-    // stack.pop();
-    // i--;
-    // printStack();
-    // dfs(i + 1);
-    // }
-
-    // private void printStack() {
-    // for (Character var : stack) {
-    // aux.push(var);
-    // }
-    // while (!aux.isEmpty()) {
-    // System.out.print(aux.pop());
-    // }
-    // }
-
+    // 2. 感觉仔细思考回溯的过程很麻烦，不知道能不能有一种能够用语言描述清楚的“巧妙”的过程能够一次完成而不必考虑一次一次地恢复；
     private char[] original;
-    private Stack<Character> stack;
+    private Stack<Character> stack;// 用来模拟整个过程
     private int N;
-    private boolean[] marked;
-    private Stack<Character> tmp_ans;
-    private List<List<Character>> ans;
+    private Stack<Character> tmp_ans;// 每次到叶节点后会得到一个结果
+    private List<List<Character>> ans;// 最终答案
 
     public StackPopSequence(String str) {
         original = str.toCharArray();
         N = original.length;
         stack = new Stack<>();
-        marked = new boolean[N];
         tmp_ans = new Stack<>();
         ans = new ArrayList<>();
         dfs(0);
@@ -80,12 +43,12 @@ public class StackPopSequence {
             char c = stack.pop();
             tmp_ans.push(c);
             if (stack.isEmpty()) {
-                List<Character> _ans = new ArrayList<>();
+                List<Character> _ans = new ArrayList<>();// 之前是把tmp_ans存进去然后再new一个新的空间，但是这样就只能记录之后的pop出来的元素————因为很多时候不会回溯到根节点。
                 for (char var : tmp_ans)
                     _ans.add(var);
                 ans.add(_ans);
-                stack.push(c);
-                tmp_ans.pop();
+                stack.push(c);// 坑1：不只是51行需要push回去，这里也需要；但貌似只有debug的时候才能发现这个坑吧？！
+                tmp_ans.pop();// 坑2：恢复答案比较好；最终的答案另外记录一下就行了：`line51\56\67`
                 return;
             }
             dfs(idx);

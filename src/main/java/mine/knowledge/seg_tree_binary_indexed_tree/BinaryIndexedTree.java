@@ -20,20 +20,20 @@ package mine.knowledge.seg_tree_binary_indexed_tree;
  */
 public class BinaryIndexedTree {
 
-    private double[] BIX;// BinaryIndexedTree
+    private double[] BIT;// BinaryIndexedTree
     private double[] nums;
 
     public BinaryIndexedTree(double[] a) {
         nums = a;
-        BIX = new double[a.length + 1];// 从1开始计算
-        int len = BIX.length;
+        BIT = new double[a.length + 1];// 从1开始计算
+        int len = BIT.length;
         for (int i = 1; i != len; i++) // BIX[1...n]=a[0...n-1]
-            BIX[i] = a[i - 1];
+            BIT[i] = a[i - 1];
         int j;
         for (int idx = 1; idx != len; idx++) {
             j = rightSibling(idx);
             if (j < len)
-                BIX[j] += BIX[idx];
+                BIT[j] += BIT[idx];
         }
     }
 
@@ -41,7 +41,7 @@ public class BinaryIndexedTree {
         idx += 1;
         double sum = 0;
         while (idx != 0) {
-            sum += BIX[idx];
+            sum += BIT[idx];
             idx = parent(idx);
         }
         return sum;
@@ -72,8 +72,8 @@ public class BinaryIndexedTree {
         double diff = val - nums[idx];
         nums[idx] = val;
         idx += 1;
-        while (idx < BIX.length) {// 遍历右侧的兄弟节点
-            BIX[idx] += diff;
+        while (idx < BIT.length) {// 遍历右侧的兄弟节点
+            BIT[idx] += diff;
             idx = rightSibling(idx);
         }
     }
