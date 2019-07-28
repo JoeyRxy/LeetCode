@@ -9,7 +9,7 @@
             "name": "Cur File With Filter",
             "request": "launch",
             "mainClass": "${file}",
-            "console": "externalTerminal",
+            "console": "integratedTerminal",
             "stepFilters": {
                 "classNameFilters": [
                     "java.*",

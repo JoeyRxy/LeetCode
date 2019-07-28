@@ -77,9 +77,22 @@ public class StackPopSequence {
         }
     }
 
+    public StackPopSequence(int n) {
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 0; i < n; i++) {
+            buffer.append(i + 1);
+        }
+        original = buffer.toString().toCharArray();
+        N = original.length;
+        stack = new Stack<>();
+        tmp_ans = new Stack<>();
+        ans = new ArrayList<>();
+        dfs(0);
+    }
+
     public static void main(String[] args) {
-        String s = "1234";
-        StackPopSequence t = new StackPopSequence(s);
+        // String s = "1234";
+        StackPopSequence t = new StackPopSequence(9);
         t.printAns();
     }
 }
