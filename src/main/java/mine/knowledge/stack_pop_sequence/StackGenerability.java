@@ -1,5 +1,7 @@
 package mine.knowledge.stack_pop_sequence;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Stack;
 
 /**
@@ -8,11 +10,10 @@ import java.util.Stack;
 public class StackGenerability {
 
     private String original;
-    private Stack<Character> stack;
     private int N;
     private int[] rank;
 
-    public StackGenerability(String original) {
+    public StackGenerability(@NotNull String original) {
         this.original = original;
         this.N = original.length();
         this.rank = new int[128];
@@ -20,10 +21,10 @@ public class StackGenerability {
             rank[original.charAt(i)] = i;
     }
 
-    public boolean isGenable(String str) {
+    public boolean isGenable(@NotNull String str) {
         if (str.length() != N)
             return false;
-        stack = new Stack<>();
+        Stack<Character> stack = new Stack<>();
         int i = 0, k = 0;
         char c, tmp;
         int rnk1, rnk2;
@@ -50,11 +51,9 @@ public class StackGenerability {
 
     public static void main(String[] args) {
         String originalString = "12345";
-        String testString[] = { "35421", "12345", "54321", "23451", "43521", "43251", "45321", "35412", "43152" };
+        String[] testString = { "35421", "12345", "54321", "23451", "43521", "43251", "45321", "35412", "43152" };
         StackGenerability t = new StackGenerability(originalString);
-        for (String str : testString) {
+        for (String str : testString)
             System.out.println(str + "\t" + t.isGenable(str));
-        }
-
     }
 }

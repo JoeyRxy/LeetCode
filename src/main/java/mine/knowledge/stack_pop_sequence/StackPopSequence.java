@@ -43,10 +43,7 @@ public class StackPopSequence {
             char c = stack.pop();
             tmp_ans.push(c);
             if (stack.isEmpty()) {
-                List<Character> _ans = new ArrayList<>();// 之前是把tmp_ans存进去然后再new一个新的空间，但是这样就只能记录之后的pop出来的元素————因为很多时候不会回溯到根节点。
-                for (char var : tmp_ans)
-                    _ans.add(var);
-                ans.add(_ans);
+                ans.add(new ArrayList<>(tmp_ans));// 之前是把tmp_ans存进去然后再new一个新的空间，但是这样就只能记录之后的pop出来的元素————因为很多时候不会回溯到根节点。
                 stack.push(c);// 坑1：不只是51行需要push回去，这里也需要；但貌似只有debug的时候才能发现这个坑吧？！
                 tmp_ans.pop();// 坑2：恢复答案比较好；最终的答案另外记录一下就行了：`line51\56\67`
                 return;
@@ -68,20 +65,20 @@ public class StackPopSequence {
         }
     }
 
+    public int count() {
+        return ans.size();
+    }
+
     public void printAns() {
         for (List<Character> _ans : ans) {
-            for (char it : _ans) {
-                System.out.print(it);
-            }
+            for (char it : _ans) System.out.print(it);
             System.out.println();
         }
     }
 
     public StackPopSequence(int n) {
-        StringBuffer buffer = new StringBuffer();
-        for (int i = 0; i < n; i++) {
-            buffer.append(i + 1);
-        }
+        StringBuilder buffer = new StringBuilder();
+        for (int i = 0; i < n; i++) buffer.append(i + 1);
         original = buffer.toString().toCharArray();
         N = original.length;
         stack = new Stack<>();
@@ -93,6 +90,7 @@ public class StackPopSequence {
     public static void main(String[] args) {
         // String s = "1234";
         StackPopSequence t = new StackPopSequence(9);
-        t.printAns();
+        System.out.println("========     " + t.count() + "      ==========");
+        // t.printAns();
     }
 }
