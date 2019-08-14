@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - StoneGame1",
+            "request": "launch",
+            "mainClass": "mine.algo.stone_game.StoneGame1",
+            "projectName": "LeetCode"
+        },
+        {
+            "type": "java",
             "name": "Cur File With Filter",
             "request": "launch",
             "mainClass": "${file}",

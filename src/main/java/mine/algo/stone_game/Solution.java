@@ -19,6 +19,7 @@ public class Solution {
             sum[i] = sum[i + 1] + piles[i];
         hash = new int[n][n];
         int max = helper(piles, 0, n - 1);
+        System.out.println(max);
         return max > sum[0] - max;
     }
 
@@ -32,5 +33,12 @@ public class Solution {
         int right = all - helper(piles, start, end - 1);
         hash[start][end] = Math.max(left, right);
         return hash[start][end];
+    }
+
+    public static void main(String[] args) {
+        int[] piles = { 4, 7, 5, 1, 2 };
+        Solution t = new Solution();
+        boolean ans = t.stoneGame(piles);
+        System.out.println(ans);
     }
 }

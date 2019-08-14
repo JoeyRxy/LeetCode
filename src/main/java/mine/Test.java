@@ -6,6 +6,8 @@ package mine;
 public class Test {
 
     public static void main(String[] args) {
-        Test test = new Test();
+        int x = 0, y = 0;
+        int c = x + y;
+        System.out.println(x + "," + y);
     }
 }
