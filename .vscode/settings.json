@@ -13,6 +13,7 @@
     },
     "java.configuration.updateBuildConfiguration": "automatic",
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "vector": "c"
     }
 }

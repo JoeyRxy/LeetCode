@@ -53,7 +53,7 @@
             ]
         },
         {
-            "name": "GDB With Biuld",
+            "name": "GDB With Build",
             "preLaunchTask": "build",
             "type": "cppdbg",
             "request": "launch",
