@@ -64,9 +64,9 @@ public class StoneGame1 {
         if (i == j)
             return piles[i];
 
-        int left = second(i + 1, j);
-        int right = second(i, j - 1);
-        return Math.max(piles[i] + left, piles[j] + right);
+        int left = second(i + 1, j, true) + piles[i];
+        int right = second(i, j - 1, false) + piles[j];
+        return Math.max(left, right);
     }
 
     /**
@@ -77,11 +77,14 @@ public class StoneGame1 {
      * @param isLeft 先手是选择了左边的吗? 这是两个函数之间进行通信的标志位.
      * @return
      */
-    private int second(int i, int j) {
+    private int second(int i, int j, boolean chooseLeft) {
         // Genius:使用isLeft变量进行两个函数之间的通讯
         if (i == j)
             return 0;
-
+        if (chooseLeft)
+            return first(i + 1, j);
+        else
+            return first(i, j - 1);
     }
 
     public boolean DP(int[] piles) {
@@ -121,11 +124,11 @@ public class StoneGame1 {
     }
 
     public static void main(String[] args) {
-        int[] piles = { 4, 1, 7 };
+        int[] piles = { 4, 7, 1 };
         StoneGame1 game = new StoneGame1();
         boolean aWin = game.stoneGame(piles);
         System.out.println(aWin);
-        // boolean res = game.DP(piles);
-        // System.out.println("is A win? " + res);
+        boolean res = game.DP(piles);
+        System.out.println("is A win? " + res);
     }
 }

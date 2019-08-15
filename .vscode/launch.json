@@ -6,13 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - StoneGame1",
-            "request": "launch",
-            "mainClass": "mine.algo.stone_game.StoneGame1",
-            "projectName": "LeetCode"
-        },
-        {
-            "type": "java",
             "name": "Cur File With Filter",
             "request": "launch",
             "mainClass": "${file}",
@@ -32,13 +25,6 @@
             }
         },
         {
-            "type": "java",
-            "name": "Java",
-            "request": "launch",
-            "mainClass": "${file}",
-            "console": "internalConsole"
-        },
-        {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
@@ -47,16 +33,15 @@
             "justMyCode": false
         },
         {
-            "name": "(gdb) Launch",
-            "preLaunchTask": "build",
+            "name": "GDB",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.o",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
-            "externalConsole": false,
             "environment": [],
+            "externalConsole": true,
             "MIMode": "gdb",
             "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
             "setupCommands": [
@@ -68,15 +53,16 @@
             ]
         },
         {
-            "name": "gdb WITHOUT build",
+            "name": "GDB With Biuld",
+            "preLaunchTask": "build",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.o",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
-            "environment": [],
             "externalConsole": true,
+            "environment": [],
             "MIMode": "gdb",
             "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
             "setupCommands": [
