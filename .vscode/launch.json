@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MaxSlidingWindow",
+            "request": "launch",
+            "mainClass": "mine.algo.MaxSlidingWindow",
+            "projectName": "LeetCode"
+        },
+        {
+            "type": "java",
             "name": "Cur File With Filter",
             "request": "launch",
             "mainClass": "${file}",
