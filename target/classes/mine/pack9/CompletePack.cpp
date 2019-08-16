@@ -9,6 +9,15 @@ using namespace std;
  * 转化成0-1背包问题；
  * 每件物品根据重量可以生成多个物品：
  * v[i],2v[i],...,2^kv[i]
+ * 
+ * test data:
+ * 4 5
+ * 1 2
+ * 2 4
+ * 3 4
+ * 4 5
+ * output:
+ * 10
  */
 int main()
 {
@@ -40,7 +49,7 @@ int main()
 
     int size = v2.size();
     int *dp = new int[V + 1];
-    for (int i = 0; i <= size; i++)
+    for (int i = 0; i <= /*以前填的是size，比V大，使用了超过所分配的内存的空间。不过为什么不在这里报错而在delete的时候报错？*/ V; i++)
         dp[i] = 0;
 
     for (int i = 0; i < size; i++)
@@ -49,9 +58,9 @@ int main()
 
     cout << dp[V] << endl;
 
-    delete[] dp; //FIXME:为什么出现了错误：Breakpoint trap;
     delete[] v;
     delete[] p;
+    delete[] dp; //FIXME:为什么出现了错误：Breakpoint trap：答案：见52行
     system("pause");
     return 0;
 }

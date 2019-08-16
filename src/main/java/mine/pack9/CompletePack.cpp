@@ -49,7 +49,7 @@ int main()
 
     int size = v2.size();
     int *dp = new int[V + 1];
-    for (int i = 0; i <= V; i++)
+    for (int i = 0; i <= /*以前填的是size，比V大，使用了超过所分配的内存的空间。不过为什么不在这里报错而在delete的时候报错？*/ V; i++)
         dp[i] = 0;
 
     for (int i = 0; i < size; i++)
@@ -60,7 +60,7 @@ int main()
 
     delete[] v;
     delete[] p;
-    delete[] dp; //FIXME:为什么出现了错误：Breakpoint trap;
+    delete[] dp; //FIXME:为什么出现了错误：Breakpoint trap：答案：见52行
     system("pause");
     return 0;
 }

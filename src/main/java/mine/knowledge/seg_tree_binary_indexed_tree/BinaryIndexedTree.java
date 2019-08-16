@@ -85,6 +85,7 @@ public class BinaryIndexedTree {
 
     public static void main(String[] args) {
         double[] nums = { 1, 3, 5 };
+        nums[0] = 0;
         BinaryIndexedTree obj = new BinaryIndexedTree(nums);
         System.out.println(obj.rangeSum(0, 2));
         obj.update(1, 2);
