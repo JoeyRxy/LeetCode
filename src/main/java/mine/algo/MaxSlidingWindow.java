@@ -228,7 +228,7 @@ public class MaxSlidingWindow {
     }
 
     public static void main(String[] args) {
-        int N = 80000000;
+        int N = 100000000;
         int[] nums = new int[N];
         Random r = new Random(System.currentTimeMillis() % 10000000);
         for (int i = 0; i < N; i++) {
