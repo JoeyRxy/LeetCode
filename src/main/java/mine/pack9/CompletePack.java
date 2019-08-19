@@ -5,12 +5,16 @@ import java.util.Scanner;
 
 /**
  * CompletePack
+ * 
+ * https://www.acwing.com/problem/content/6/
+ * 
+ * test data: 4 5 1 2 3 2 4 1 3 4 3 4 5 2 expected output:10
  */
 public class CompletePack {
 
     public static void main(String[] args) {
         int N, V;
-        Scanner scanner = new Scanner(System.in);
+        var scanner = new Scanner(System.in);
         N = scanner.nextInt();
         V = scanner.nextInt();
         int v[] = new int[N];
@@ -46,5 +50,6 @@ public class CompletePack {
                 dp[j] = Math.max(dp[j], dp[j - idx] + p2.get(i));
         }
         System.out.println(dp[V]);
+        scanner.close();
     }
 }
