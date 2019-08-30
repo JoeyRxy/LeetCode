@@ -37,5 +37,6 @@ public class CoinChange {
         int[] coins = { 1, 2, 5 };
         CoinChange t = new CoinChange();
         System.out.println(t.coinChange(coins, 11));
+
     }
 }
