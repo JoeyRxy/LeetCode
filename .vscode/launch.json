@@ -3,8 +3,7 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [
-        {
+    "configurations": [{
             "type": "java",
             "name": "CodeLens (Launch) - TextJustification",
             "request": "launch",
@@ -23,7 +22,7 @@
             "name": "Cur File With Filter",
             "request": "launch",
             "mainClass": "${file}",
-            "console": "integratedTerminal",
+            "console": "internalConsole",
             "stepFilters": {
                 "classNameFilters": [
                     "java.*",
@@ -58,13 +57,11 @@
             "externalConsole": true,
             "MIMode": "gdb",
             "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
+            "setupCommands": [{
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            }]
         },
         {
             "name": "GDB With Build",
@@ -79,13 +76,11 @@
             "environment": [],
             "MIMode": "gdb",
             "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
+            "setupCommands": [{
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            }]
         }
     ]
 }
