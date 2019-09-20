@@ -26,21 +26,36 @@ public class SubString {
         return false;
     }
 
+    // private int leftBiSearch(ArrayList<Integer> a, int target) {
+    // int l = 0, r = a.size() - 1;
+    // int mid = l;
+    // int valMid;
+    // while (l < r) {
+    // mid = l + 1 + (r - l) / 2;
+    // valMid = a.get(mid);
+    // if (valMid == target)
+    // return mid;
+    // else if (valMid < target)
+    // l = mid + 1;
+    // else
+    // r = mid - 1;
+    // }
+    // return mid;
+    // }
+
     private int leftBiSearch(ArrayList<Integer> a, int target) {
-        int l = 0, r = a.size() - 1;
-        int mid = l;
+        int l = 0, r = a.size();
+        int mid;
         int valMid;
         while (l < r) {
-            mid = l + 1 + (r - l) / 2;
+            mid = (r + l) / 2;
             valMid = a.get(mid);
-            if (valMid == target)
-                return mid;
-            else if (valMid < target)
-                l = mid + 1;
+            if (valMid > target)
+                r = mid;
             else
-                r = mid - 1;
+                l = mid + 1;
         }
-        return mid;
+        return l;
     }
 
     /**
@@ -62,23 +77,42 @@ public class SubString {
         // 开始搜索
         // 依次遍历s，对每一个字符，以二分查找的方式找到上述index[s.charAt(i)]数组中大于当前上次搜索结束位置j的位置
 
+        // ArrayList<Integer> index;
+        // int i, j = 0;
+        // int last;
+        // for (i = 0; i < slen; i++) {
+        // index = indexDict[s.charAt(i)];
+        // last = index.size();
+        // // 再index数组中搜寻j（以及比j大的）
+        // j = leftBiSearch(index, j);
+        // if (j >= last)
+        // break;
+        // }
+        // return i == tlen;
+
+        int j = 0;
+        char c;
         ArrayList<Integer> index;
-        int i, j = 0;
-        for (i = 0; i < slen; i++) {
-            index = indexDict[s.charAt(i)];
-            // 再index数组中搜寻j（以及比j大的）
-            j = leftBiSearch(index, j) + 1;
-            if (j > tlen)
-                break;
+        int pos;
+        for (int i = 0; i < slen; i++) {
+            c = s.charAt(i);
+            index = indexDict[c];
+            if (index == null)
+                return false;
+            pos = leftBiSearch(index, j);
+
+            if (pos == index.size())
+                return false;
+            j = index.get(pos) + 1;
         }
-        return i == tlen;
+        return true;
     }
 
     public static void main(String[] args) {
         Random random = new Random(System.currentTimeMillis());
         String s, t;
-        int slen = 5;
-        int tlen = 20;
+        int slen = 5000;
+        int tlen = 200000000;
         char[] sbuilder = new char[slen], tbuilder = new char[tlen];
         int r;
         for (int i = 0; i < slen; i++) {
@@ -87,7 +121,7 @@ public class SubString {
                 r += 32;
             sbuilder[i] = (char) r;
         }
-        random.setSeed(System.currentTimeMillis());
+        random.setSeed(System.currentTimeMillis() * random.nextInt());
         for (int i = 0; i < tlen; i++) {
             r = Math.abs(random.nextInt() % 127);
             if (r < 32)
