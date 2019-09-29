@@ -18,3 +18,4 @@
 *.blg
 **/.vscode/ipch
 target/
+KMP.txt
