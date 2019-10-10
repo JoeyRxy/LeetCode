@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MostA",
+            "request": "launch",
+            "mainClass": "mine.labuladong.MostA",
+            "projectName": "Algo"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - KMP",
             "request": "launch",
             "mainClass": "mine.knowledge.dynamic_programming.KMP",

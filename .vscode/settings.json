@@ -85,5 +85,20 @@
         "typeinfo": "cpp",
         "valarray": "cpp"
     },
-    "maven.view": "flat"
+    "maven.view": "flat",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#11515e",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#d827ba",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "titleBar.activeBackground": "#092c33",
+        "titleBar.inactiveBackground": "#092c3399",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveForeground": "#e7e7e799",
+        "statusBar.background": "#092c33",
+        "statusBarItem.hoverBackground": "#11515e",
+        "statusBar.foreground": "#e7e7e7"
+    },
+    "peacock.color": "#092c33"
 }
