@@ -9,7 +9,7 @@ import org.junit.Test;
  */
 public class BasicTest {
     @Test
-    public void f(String[] args) {
+    public void f() {
         Random random = new Random(System.currentTimeMillis());
         int i = 0;
         while (i < 10) {
@@ -19,10 +19,7 @@ public class BasicTest {
     }
 
     @Test
-    public void initializeArray() {
-        int[] a = new int[5];
-        for (var x : a) {
-            System.out.println(x);
-        }
+    public void StringFormat() {
+        System.out.println(String.format("%f", Math.random()));
     }
 }
