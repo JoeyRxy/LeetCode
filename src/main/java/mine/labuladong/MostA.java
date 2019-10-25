@@ -19,16 +19,24 @@ public class MostA {
 
     private int max = 0;
 
+    public long duration1;
+
     public MostA(int N) {
         this.N = N;
+        long currentTimeMillis = System.currentTimeMillis();
         for (int i = 1; i <= N; i++) {// 相当于进行了状态START
             dfs(i + 2, i, i, PASTED);
         }
+        long currentTimeMillis2 = System.currentTimeMillis();
+        duration1 = currentTimeMillis2 - currentTimeMillis;
+
     }
 
     public int ans() {
         return max;
     }
+
+    private int t = 0;
 
     /**
      * 含有重叠子问题：对于同一组(depth,count,copy,cur)应当只计算一次。记忆化技巧
@@ -39,10 +47,11 @@ public class MostA {
      * @param cur   当前状态
      */
     private void dfs(int depth, int count, int copy, byte cur) {
+        // ++t;
         if (depth >= N) {
             if (max < count)
                 max = count;
-
+            return;
         }
         switch (cur) {
         case SELECTED_COPIED:
@@ -69,29 +78,30 @@ public class MostA {
     }
 
     private class Tuple {
-        int depth, count, copy;
-        byte cur;
+        int n, count, copy;
+        // byte cur;
 
         @Override
         public boolean equals(Object obj) {
             if (obj instanceof Tuple) {
                 Tuple tmp = (Tuple) obj;
-                if (cur == tmp.cur && count == tmp.count && copy == tmp.copy && depth == tmp.depth)
+                if (count == tmp.count && copy == tmp.copy && n == tmp.n)
                     return true;
             }
             return false;
         }
 
-        public Tuple(int depth, int count, int copy, byte cur) {
-            this.depth = depth;
+        public Tuple(int n, int count, int copy) {
+            this.n = n;
             this.count = count;
             this.copy = copy;
-            this.cur = cur;
+            // this.cur = cur;
         }
 
     }
 
-    private Set<Tuple> dict = new HashSet<>();
+    // private Set<Tuple> dict = new HashSet<>();
+    private Map<Tuple, Integer> dict = new HashMap<>();
 
     @Deprecated
     /**
@@ -106,16 +116,47 @@ public class MostA {
                 max = count;
             return;
         }
-        if (dict.contains(new Tuple(depth, count, copy, cur))) {
+        // if (dict.contains(new Tuple(depth, count, copy, cur))) {
 
-        }
+    }
+
+    /**
+     * 
+     * @param n
+     * @param count
+     * @param copy
+     * @return
+     */
+    public int dp(int n, int count, int copy) {
+        if (n <= 0)
+            return count;
+        Tuple key = new Tuple(n, count, copy);
+        Integer tmp = dict.get(key);
+        if (tmp != null)
+            return tmp;
+        int m = max3(dp(n - 1, count + 1, copy), dp(n - 1, count + copy, copy), dp(n - 2, count, count));
+        dict.put(key, m);
+        return m;
+    }
+
+    private int max3(int a, int b, int c) {
+        if (a < b)
+            a = b;
+        if (a < c)
+            a = c;
+        return a;
     }
 
     public static void main(String[] args) {
         // for (int i = 3; i < 20; i++) {
         // System.out.println(String.format("%-5d\t:\t%-10d", i, new MostA(i).ans()));
         // }
-
-        System.out.println(new MostA(50).ans());
+        MostA sss = new MostA(20);
+        System.out.println(sss.ans());
+        System.out.println("duration:" + sss.duration1);
+        long start = System.currentTimeMillis();
+        System.out.println(sss.dp(20, 0, 0));
+        long end = System.currentTimeMillis();
+        System.out.println("duration:" + (end - start));
     }
 }
