@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Usingbyte",
+            "request": "launch",
+            "mainClass": "mine.basictest.Usingbyte",
+            "projectName": "LeetCode"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - KMP",
             "request": "launch",
             "mainClass": "mine.knowledge.dynamic_programming.KMP",
