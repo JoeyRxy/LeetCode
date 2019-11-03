@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - TrapRain",
+            "request": "launch",
+            "mainClass": "mine.labuladong.TrapRain",
+            "projectName": "LeetCode"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Usingbyte",
             "request": "launch",
             "mainClass": "mine.basictest.Usingbyte",
