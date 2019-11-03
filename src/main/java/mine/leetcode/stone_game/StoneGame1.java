@@ -78,7 +78,7 @@ public class StoneGame1 {
      * @return
      */
     private int second(int i, int j, boolean chooseLeft) {
-        // Genius:使用isLeft变量进行两个函数之间的通讯
+        // ATTENTION:使用isLeft变量进行两个函数之间的通讯
         if (i == j)
             return 0;
         if (chooseLeft)

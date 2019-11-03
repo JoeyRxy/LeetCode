@@ -44,9 +44,6 @@ public class FindPattern123 {
     }
 
     // ATTENTION : Using search
-    /**
-     * Genius!
-     */
     private boolean usingBinarySearch(int[] nums) {
         int len = nums.length;
         if (len < 3)

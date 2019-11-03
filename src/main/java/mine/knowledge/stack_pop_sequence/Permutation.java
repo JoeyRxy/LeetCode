@@ -86,14 +86,19 @@ public class Permutation {
     public void printAns() {
         for (int[] ansi : ans) {
             for (int x : ansi) {
-                System.out.print(x);
+                System.out.print(Integer.toHexString(x).toUpperCase());
             }
             System.out.println();
         }
     }
 
     public static void main(String[] args) {
-        Permutation t = new Permutation(5);
-        t.printAns();
+        long start = System.currentTimeMillis();
+        Permutation t = new Permutation(10);
+        long end = System.currentTimeMillis();
+        // t.printAns();
+
+        System.out.println(end - start);
+        System.out.println(t.ans().size());
     }
 }
