@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [{
             "type": "java",
+            "name": "CodeLens (Launch) - UsingLength",
+            "request": "launch",
+            "mainClass": "mine.basictest.UsingLength",
+            "projectName": "Algo"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Permutation",
             "request": "launch",
             "mainClass": "mine.knowledge.stack_pop_sequence.Permutation",
@@ -44,7 +51,6 @@
             "request": "launch",
             "mainClass": "${file}",
             "console": "internalConsole",
-            // "vmArgs": "-Xcomp",
             "stepFilters": {
                 "classNameFilters": [
                     "java.*",
@@ -90,7 +96,7 @@
             "preLaunchTask": "build",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}\\out\\${fileBasenameNoExtension}.o",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.o",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

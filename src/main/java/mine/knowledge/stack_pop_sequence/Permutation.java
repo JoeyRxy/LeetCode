@@ -1,6 +1,7 @@
 package mine.knowledge.stack_pop_sequence;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
