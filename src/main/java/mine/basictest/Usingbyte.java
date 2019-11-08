@@ -9,5 +9,11 @@ public class Usingbyte {
         String s = "helloworld";
         char[] a = s.toCharArray();
         System.out.println(new String(a));
+        System.out.println(a.toString());
     }
+    /**
+     * helloworld
+     * <p>
+     * [C@5f205aa
+     */
 }
