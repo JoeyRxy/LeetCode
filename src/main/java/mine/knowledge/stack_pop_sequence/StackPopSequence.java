@@ -71,14 +71,16 @@ public class StackPopSequence {
 
     public void printAns() {
         for (List<Character> _ans : ans) {
-            for (char it : _ans) System.out.print(it);
+            for (char it : _ans)
+                System.out.print(it);
             System.out.println();
         }
     }
 
     public StackPopSequence(int n) {
         StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < n; i++) buffer.append(i + 1);
+        for (int i = 0; i < n; i++)
+            buffer.append(i + 1);
         original = buffer.toString().toCharArray();
         N = original.length;
         stack = new Stack<>();
@@ -89,8 +91,8 @@ public class StackPopSequence {
 
     public static void main(String[] args) {
         // String s = "1234";
-        StackPopSequence t = new StackPopSequence(9);
+        StackPopSequence t = new StackPopSequence(4);
         System.out.println("========     " + t.count() + "      ==========");
-        // t.printAns();
+        t.printAns();
     }
 }
