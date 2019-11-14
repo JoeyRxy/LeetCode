@@ -3,7 +3,6 @@ package mine.knowledge.dynamic_programming;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * KMP

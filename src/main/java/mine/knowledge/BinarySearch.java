@@ -1,7 +1,5 @@
 package mine.knowledge;
 
-import java.util.Arrays;
-
 /**
  * BinarySearch
  * <p>
