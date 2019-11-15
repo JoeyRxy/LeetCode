@@ -1,23 +1,70 @@
 package mine.basictest;
 
+import java.util.Arrays;
+
 /**
  * GaussElimination
  */
 public class GaussEliminator {
 
-    public GaussEliminator(Matrix a) {
-
+    public static double[] solve(Matrix a, double[] b) {
+        // 组成增广矩阵
+        int m = a.mat.length;
+        int n = a.mat[0].length;
+        if (m != b.length)
+            throw new IllegalArgumentException("the matrix's size doesn't agree with vector's length");
+        double[][] _new = new double[m][n + 1];
+        for (int i = 0; i < _new.length; i++) {
+            for (int j = 0; j < n; j++) {
+                _new[i][j] = a.mat[i][j];
+            }
+            _new[i][n] = b[i];
+        }
+        // 化简增广矩阵
+        helper(_new);
+        boolean flag = false;
+        for (int i = m - 1; i > -1; i--) {
+            if (_new[i][n] != 0) {
+                for (int j = 0; j < n; j++) {
+                    if (_new[i][j] != 0)
+                        flag = true;
+                }
+                if (flag == true) {// 有解
+                    if (n > i + 1) {
+                        // TODO:
+                        System.out.println("There're multiple solutions!");
+                        return null;
+                    } else {
+                        // System.out.println("There's one solution:");
+                        double[] _t = new double[m];
+                        for (int j = 0; j < _t.length; j++) {
+                            _t[j] = _new[j][n];
+                        }
+                        return _t;
+                    }
+                } else {
+                    System.out.println("There's no solution");
+                    return null;
+                }
+            }
+        }
+        return null;
     }
 
-    public GaussEliminator(Matrix a, double[] b) {
+    public static Matrix inverse(Matrix a) {
+        double[][] mat = a.mat;
+        if (mat.length != mat[0].length)
+            throw new IllegalArgumentException("Must be an n-by-n matrix.");
+        // TODO
+        return null;
     }
 
     /**
      * 化简为最简阶梯型
      * <p>
-     * 注意：会修改数组内容，可提前备份源数据
+     * 注意：会修改数组内容，提前备份源数据
      */
-    private void helper(double[][] mat) {
+    public static void helper(double[][] mat) {
         int m = mat.length;
         int n = mat[0].length;
         if (m == 1)
@@ -71,15 +118,5 @@ public class GaussEliminator {
             }
             stage--;
         }
-    }
-
-    // private <T> void swap(T a, T b) {
-    // T _t = a;
-    // a = b;
-    // b = _t;
-    // }
-
-    public static void main(String[] args) {
-
     }
 }

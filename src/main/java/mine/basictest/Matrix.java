@@ -20,23 +20,36 @@ public class Matrix {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Matrix :\n");
         for (double[] ds : mat) {
-            System.out.println(Arrays.toString(ds));
+            builder.append(Arrays.toString(ds)).append("\n");
         }
         return new String(builder);
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-
-        return super.clone();
+    public Matrix clone() throws CloneNotSupportedException {
+        double[][] t = new double[mat.length][];
+        for (int i = 0; i < t.length; i++) {
+            t[i] = mat[i].clone();
+        }
+        return new Matrix(t);
     }
 
     @Override
     public boolean equals(Object obj) {
-
-        return super.equals(obj);
+        int n = mat[0].length;
+        double[][] t;
+        if (obj instanceof Matrix)
+            t = ((Matrix) obj).mat;
+        else
+            throw new IllegalArgumentException(obj + " is not a instance of " + Matrix.class);
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < n; j++) {
+                if (t[i][j] != mat[i][j])
+                    return false;
+            }
+        }
+        return true;
     }
 
 }
