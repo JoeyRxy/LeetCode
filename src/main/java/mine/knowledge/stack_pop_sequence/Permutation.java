@@ -1,7 +1,7 @@
 package mine.knowledge.stack_pop_sequence;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -63,11 +63,7 @@ public class Permutation {
 
     private void dfs(int depth) {
         if (depth == N) {
-            int[] _ans = new int[N];
-            for (int i = 0; i < N; i++) {
-                _ans[i] = tmp[i];
-            }
-            ans.add(_ans);
+            ans.add(Arrays.copyOf(tmp, tmp.length));
             return;
         }
         for (int i = 0; i != N; i++) {
