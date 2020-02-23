@@ -1,6 +1,7 @@
 package mine.leetcode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -20,14 +21,19 @@ public class GroupAnagram {
      * @return
      */
     public List<List<String>> groupAnagrams(String[] strs) {
-        Map<String, List<String>> map = new TreeMap<>();
+        Map<String, List<String>> map = new HashMap<>();
         String sortedString;
+        List<String> list;
         for (String str : strs) {
             sortedString = sort(str);
-            if (!map.containsKey(sortedString))
-                map.put(sortedString, new ArrayList<>());// ATTENTION 重复键的不同值的集合——用一个List的数据结构保存
+            List<String> _t = map.get(sortedString);
+            if (_t == null) {
+                list = new ArrayList<>();
+                list.add(str);
+                map.put(sortedString, list);// ATTENTION 重复键的不同值的集合——用一个List的数据结构保存
+            } else
+                _t.add(str);
 
-            map.get(sortedString).add(str);
         }
         return new ArrayList<>(map.values());
     }
@@ -73,5 +79,13 @@ public class GroupAnagram {
             }
         }
         return new String(ans);
+    }
+
+    public static void main(String[] args) {
+        String strs[] = { "eat", "tea", "tan", "ate", "nat", "bat" };
+        List<List<String>> ans = new GroupAnagram().groupAnagrams(strs);
+        for (List<String> list : ans) {
+            System.out.println(list);
+        }
     }
 }
