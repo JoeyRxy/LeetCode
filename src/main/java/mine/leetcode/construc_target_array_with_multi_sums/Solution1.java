@@ -1,4 +1,4 @@
-package mine.leetcode;
+package mine.leetcode.construc_target_array_with_multi_sums;
 
 /**
  * ConstructTargetArrayWithMultiSums
@@ -23,9 +23,11 @@ package mine.leetcode;
  * <code>False</code>.
  * </p>
  */
-public class ConstructTargetArrayWithMultiSums {
+public class Solution1 {
+    public int count;
 
     private int[] a;
+    private int min_i;
     private int len;
     private int sum;
     private int[] target;
@@ -39,23 +41,31 @@ public class ConstructTargetArrayWithMultiSums {
         for (int i = 0; i < len; i++) {
             a[i] = 1;
         }
+        min_i = len - 1;
         sum = len;
-        for (int i = 0; i < len; i++)
+        for (int i = 0; i < len; i++) {
             dfs(i);
+        }
         return res;
     }
 
+    private boolean helper() {
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != 1)
+                return false;
+        }
+        return true;
+    }
+
     private void dfs(int i) {
+        count++;
         if (res)// 快速收尾
             return;
-        if (sum > target[i])// 剪枝
+        if (sum > target[i])
             return;
-        else if (sum == target[i]) {
-            a[i] = sum;
-            return;
-        }
-        int _a_i = a[i];
+
         int _sum = sum;
+        int _a_i = a[i];
         // 更新a[i]
         a[i] = sum;
         // 更新sum
@@ -65,25 +75,27 @@ public class ConstructTargetArrayWithMultiSums {
             res = true;
             return;
         }
-        for (int j = 0; j < len; j++) {
+        for (int j = 0; j < len; j++)
             dfs(j);
-        }
+
         a[i] = _a_i;// 还原a[i]
         sum = _sum;// 还原sum
     }
 
     private boolean verify() {
         for (int i = 0; i < len; i++) {
-            if (a[i] < target[i])
+            if (a[i] != target[i])
                 return false;
         }
         return true;
     }
 
     public static void main(String[] args) {
-        int[] target = { 9, 3, 5 };
-        boolean possible = new ConstructTargetArrayWithMultiSums().isPossible(target);
+        int[] target = { 1, 100 };
+        Solution1 solution1 = new Solution1();
+        boolean possible = solution1.isPossible(target);
         System.out.println(possible);
+        System.out.println("==== " + solution1.count + " ======");
     }
 
 }
