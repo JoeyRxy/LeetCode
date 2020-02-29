@@ -1,4 +1,4 @@
-package mine.leetcode;
+package mine.leetcode.gen_parens;
 
 import java.util.ArrayList;
 import java.util.List;
