@@ -4,11 +4,15 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Callable;
+
+import javax.security.auth.callback.Callback;
 
 import org.junit.Test;
 
@@ -125,15 +129,93 @@ public class BasicTest {
 
     @Test
     public void testLUP() {
-        Matrix A = new Matrix(5, 8);
+        Matrix A = new Matrix(5, 5);
         Matrix B = new Matrix(5, 5);
         A.randomInit(100);
-        B.randomInit(100);
+        B.initIdentityMatrix();
         System.out.println(A);
         System.out.println("===============");
         System.out.println(B);
         LUP lup = new LUP(A, B);
         System.out.println("==============");
-        System.out.println(lup);
+        System.out.println(lup.eliminatedArgumentMatrix());
+        System.out.println("==============");
+        Matrix res = lup.eliminatedB();
+        System.out.println(res);
+        System.out.println("==============");
+        System.out.println(res.multiply(A));
+    }
+
+    @Test
+    public void testArray() {
+        double[][] a = new double[5][1];
+        double[] b = new double[5];
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(Arrays.toString(a[i]));
+        }
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(b));
+    }
+
+    @Test
+    public void testMatrix() {
+        Matrix matrix = new Matrix(5);
+        matrix.randomInit(10);
+        System.out.println("======= Matrix ==========");
+        System.out.println(matrix);
+        System.out.println("======= reverse ==========");
+        Matrix reverse = matrix.reverse();
+        System.out.println(reverse);
+        System.out.println("======= rank ==========");
+        System.out.println(matrix.rank());
+        System.out.println("======= 验证 ==========");
+        System.out.println(reverse.multiply(matrix));
+
+    }
+
+    @Test
+    public void testDoubleArray() {
+        double[][] a = new double[5][6];
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[0].length; j++) {
+                System.out.print(a[i][j] + ", ");
+            }
+            System.out.println();
+        }
+    }
+
+    private byte[] getMd5(String str) throws NoSuchAlgorithmException {
+        MessageDigest md5 = MessageDigest.getInstance("md5");
+        byte[] bytes = str.getBytes();
+        md5.update(bytes);
+        return bytes;
+    }
+
+    public void f(String str, CallBack g) throws Exception {
+        byte[] res = g.dosomething(str);
+        System.out.println(Arrays.toString(res));
+    }
+
+    @Test
+    public void testCallable() throws Exception {
+        f("fuck you!", new CallBack() {
+
+            @Override
+            public byte[] dosomething(String str) {
+                try {
+                    return getMd5(str);
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+        });
+    }
+
+    @Test
+    public void testDArray() {
+        int n = 3;
+        int[][] a = new int[n][n];
+        System.out.println(a);
     }
 }

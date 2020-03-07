@@ -6,6 +6,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - StoneGame2",
+            "request": "launch",
+            "mainClass": "mine.leetcode.stone_game.StoneGame2",
+            "projectName": "Algo"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Solver",
+            "request": "launch",
+            "mainClass": "mine.leetcode.sodo.Solver",
+            "projectName": "Algo"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - First",
+            "request": "launch",
+            "mainClass": "mine.leetcode.nqueens.First",
+            "projectName": "Algo"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MostA",
+            "request": "launch",
+            "mainClass": "mine.labuladong.MostA",
+            "projectName": "Algo"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - CutRod",
             "request": "launch",
             "mainClass": "mine.knowledge.dynamic_programming.intro_to_algo.CutRod",

@@ -2,18 +2,22 @@ package mine.knowledge;
 
 import java.util.Arrays;
 
+import mine.annotation.CoreTool;
+
 /**
  * Matrix
  */
+@CoreTool(className = "mine.knowledge.Matrix")
 public class Matrix {
-
+    private final double epsilon = 1e-5;
     private double[][] data;
 
     public Matrix(int rows, int cols) {
-        data = new double[rows][];
-        for (int i = 0; i < rows; i++) {
-            data[i] = new double[cols];
-        }
+        data = new double[rows][cols];
+    }
+
+    public Matrix(int n) {
+        data = new double[n][n];
     }
 
     public Matrix(Matrix m) {
@@ -26,7 +30,9 @@ public class Matrix {
     }
 
     public Matrix(double[][] a) {
-        data = a;
+        int c = a[0].length;
+        for (int i = 0; i < a.length; i++)
+            data[i] = Arrays.copyOf(a[i], c);
     }
 
     public void initIdentityMatrix() {
@@ -44,7 +50,7 @@ public class Matrix {
     public void randomInit(int multiple) {
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data[0].length; j++) {
-                data[i][j] = Math.random() * multiple;
+                data[i][j] = (Math.random() - 0.5) * multiple;
             }
         }
     }
@@ -97,10 +103,19 @@ public class Matrix {
             for (int j = 0; j < newCols; j++) {
                 for (int k = 0; k < _t; k++) {
                     mData[i][j] += data[i][k] * m.data[k][j];
+                    if (is0(mData[i][j]))
+                        mData[i][j] = 0;
                 }
             }
         }
         return matrix;
+    }
+
+    private boolean is0(double x) {
+        if (Math.abs(x) < epsilon)
+            return true;
+        else
+            return false;
     }
 
     public static Matrix multiply(Matrix m1, Matrix m2) {
@@ -108,6 +123,27 @@ public class Matrix {
             throw new IllegalArgumentException();
         }
         return m1.multiply(m2);
+    }
+
+    public Matrix reverse() {
+        if (data.length != data[0].length)
+            throw new IllegalArgumentException("row's num doesn't agree with col's.");
+
+        Matrix m = new Matrix(data.length, data.length);
+        m.initIdentityMatrix();
+        lup = new LUP(this, m);
+        if (lup.rank() != data.length)
+            throw new IllegalArgumentException("奇异矩阵");
+        return lup.eliminatedB();
+    }
+
+    /**
+     * 行秩
+     */
+    public int rank() {
+        if (lup != null)
+            return lup.rank();
+        return new LUP(this).rank();
     }
 
     public Matrix neg() {
@@ -169,7 +205,6 @@ public class Matrix {
         }
     }
 
-    private Matrix reverse() {
-        return null;
-    }
+    private LUP lup;
+
 }

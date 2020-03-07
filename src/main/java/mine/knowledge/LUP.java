@@ -5,10 +5,11 @@ package mine.knowledge;
  */
 public class LUP {
     private final double epsilon = 1e-5;
-
     private double[][] a;
+    private Matrix B;
 
     public LUP(Matrix A, Matrix B) {
+        this.B = B;
         int[] sizeA = A.size();
         int[] sizeB = B.size();
         int colsA = sizeA[1];
@@ -37,6 +38,41 @@ public class LUP {
             // pivot
             pivot(i, j);
         }
+    }
+
+    public LUP(Matrix A) {
+        int[] size = A.size();
+        int colsA = size[1];
+        a = new double[size[0]][colsA];
+        for (int i = 0; i < a.length; i++)
+            for (int j = 0; j < colsA; j++)
+                a[i][j] = A.get(i, j);
+
+        for (int j = 0, i = 0; j < colsA && i < a.length; j++, i++) {
+            // 找列j中的最大值
+            int maxRow = maxRowOf(i, j);
+            if (is0(a[maxRow][j]))
+                continue;
+            // swap行
+            swap(i, maxRow);
+            // uniform行
+            uniform(i, j);
+            // pivot
+            pivot(i, j);
+        }
+    }
+
+    /**
+     * 
+     * @return rank of <code>A</code> and the argument matrix <code>a</code>.
+     */
+    public int rank() {
+        int tmp = a[0].length - B.size()[1] - 1;
+        int i = a.length - 1;
+        while (is0(a[i][tmp])) {
+            i--;
+        }
+        return i + 1;
     }
 
     private void pivot(int row, int startCol) {
@@ -81,31 +117,20 @@ public class LUP {
         a[row2] = tmp;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder("[\n\t");
-        for (int i = 0; i < a.length - 1; i++) {
-            builder.append(arrayString(a[i])).append(",\n\t");
-        }
-        builder.append(arrayString(a[a.length - 1])).append("\n]");
-        return builder.toString();
+    public Matrix eliminatedArgumentMatrix() {
+        return new Matrix(a);
     }
 
-    private String arrayString(double[] a) {
-        if (a == null)
-            return "null";
-        int iMax = a.length - 1;
-        if (iMax == -1)
-            return "[]";
-
-        StringBuilder b = new StringBuilder();
-        b.append('[');
-        for (int i = 0;; i++) {
-            b.append(String.format("%.3f", a[i]));
-            if (i == iMax)
-                return b.append(']').toString();
-            b.append(", ");
+    public Matrix eliminatedB() {
+        int[] size = B.size();
+        int colsA = a[0].length - size[1];
+        double[][] t = new double[size[0]][size[1]];
+        for (int i = 0; i < t.length; i++) {
+            for (int j = 0; j < t[0].length; j++) {
+                t[i][j] = a[i][j + colsA];
+            }
         }
+        return new Matrix(t);
     }
 
 }
