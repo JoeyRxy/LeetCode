@@ -2,6 +2,9 @@ package mine;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -217,5 +220,19 @@ public class BasicTest {
         int n = 3;
         int[][] a = new int[n][n];
         System.out.println(a);
+    }
+
+    @Test
+    public void testFile() throws IOException {
+        File file = new File("src/main/resources/try.txt");
+        FileInputStream fileInputStream = new FileInputStream(file);
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        int len;
+        byte[] b = new byte[128];
+        while ((len = fileInputStream.read(b)) != -1) {
+            fileOutputStream.write(b, 0, len);
+        }
+        fileInputStream.close();
+        fileOutputStream.close();
     }
 }

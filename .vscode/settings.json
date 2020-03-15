@@ -86,7 +86,4 @@
         "valarray": "cpp"
     },
     "maven.view": "hierarchical",
-    "java.completion.filteredTypes": [
-        "java.awt.*",
-    ]
 }

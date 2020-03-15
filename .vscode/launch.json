@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Encrypt",
+            "request": "launch",
+            "mainClass": "mine.basictest.Encrypt",
+            "projectName": "Algo"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - StoneGame2",
             "request": "launch",
             "mainClass": "mine.leetcode.stone_game.StoneGame2",
