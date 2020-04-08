@@ -86,4 +86,5 @@
         "valarray": "cpp"
     },
     "maven.view": "hierarchical",
+    "favorites.sortDirection": "ASC",
 }

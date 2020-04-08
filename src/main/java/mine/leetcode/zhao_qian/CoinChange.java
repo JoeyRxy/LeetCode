@@ -1,9 +1,14 @@
-package mine.leetcode;
+package mine.leetcode.zhao_qian;
 
 /**
  * CoinChange
  * <p>
- * <code>dp[i]=min_(v=0,1,...,coins.length-1){dp[i - coins[v]] + 1}</code>
+ * You are given coins of different denominations and a total amount of money.
+ * Write a function to compute the number of combinations that make up that
+ * amount. You may assume that you have infinite number of each kind of coin.
+ * </p>
+ * <p>
+ * <code>dp[i]=min{dp[i - coins[v]] + 1 | v = 0 -> n-1}</code>
  */
 public class CoinChange {
     private int[] dp;
