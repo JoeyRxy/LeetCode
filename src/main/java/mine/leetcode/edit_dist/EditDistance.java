@@ -46,7 +46,7 @@ public class EditDistance {
         int add = add(word1, word2);
         int del = del(word1, word2);
         int update = update(word1, word2);
-        return Math.max(add, Math.max(del, update)) + 1;
+        return Math.min(add, Math.min(del, update)) + 1;
     }
 
     private int update(String word1, String word2) {

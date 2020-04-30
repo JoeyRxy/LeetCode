@@ -1,4 +1,4 @@
-package mine.leetcode.sodo;
+package mine.leetcode.sudo;
 
 /**
  * Solve

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - EditDistance",
+            "request": "launch",
+            "mainClass": "mine.leetcode.edit_dist.EditDistance",
+            "projectName": "Algo"
+        },
+        {
+            "type": "java",
             "name": "Java Cur",
             "request": "launch",
             "mainClass": "${file}",
