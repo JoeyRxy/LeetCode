@@ -22,13 +22,14 @@ public class GaussEliminator {
         }
         // 化简增广矩阵
         helper(_new);
+        // 从中提取解
         boolean flag = false;
         for (int i = m - 1; i > -1; i--) {
             if (_new[i][n] != 0) {
-                for (int j = 0; j < n; j++) {
+                for (int j = n - 1; j != 0; j--)
                     if (_new[i][j] != 0)
                         flag = true;
-                }
+
                 if (flag == true) {// 有解
                     if (n > i + 1) {
                         // TODO:
