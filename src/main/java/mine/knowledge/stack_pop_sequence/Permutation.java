@@ -11,13 +11,13 @@ public class Permutation {
     private boolean[] marked;
     private int N;
     private List<int[]> ans;
-    private int[] tmp;
+    private int[] tmpAns;
 
     public Permutation(int n) {
         this.N = n;
         marked = new boolean[N];
         ans = new ArrayList<>();
-        tmp = new int[N];
+        tmpAns = new int[N];
         dfs(0);
     }
     // not work!
@@ -63,16 +63,16 @@ public class Permutation {
     private void dfs(int depth) {
         if (depth == N) {
             int[] _ans = new int[N];
-            for (int i = 0; i < N; i++) {
-                _ans[i] = tmp[i];
-            }
+            for (int i = 0; i < N; i++) // 需分配新空间存储，否则会覆盖tmpAns上之前记录的路径
+                _ans[i] = tmpAns[i];
+
             ans.add(_ans);
             return;
         }
         for (int i = 0; i != N; i++) {
             if (!marked[i]) {
                 marked[i] = true;
-                tmp[depth] = i + 1;
+                tmpAns[depth] = i + 1;
                 dfs(depth + 1);
                 marked[i] = false;
             }
