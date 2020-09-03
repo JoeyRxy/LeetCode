@@ -30,7 +30,7 @@ public class ThreeSum {
     /**
      * SortAns
      */
-    public class SortAns implements Comparator<List<Integer>> {
+    public class Cmp implements Comparator<List<Integer>> {
 
         @Override
         public int compare(List<Integer> o1, List<Integer> o2) {
@@ -56,7 +56,7 @@ public class ThreeSum {
         // ATTENTION : Use "Collections.sort" instead!
         if (numsList.size() == 0)
             return numsList;
-        numsList.sort(new SortAns());
+        numsList.sort(new Cmp());
         int size = numsList.size();
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> tmp = numsList.get(0), cur;

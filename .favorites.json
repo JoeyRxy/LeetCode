@@ -1,0 +1,28 @@
+[
+    {
+        "type": "Group",
+        "name": "dp",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "dPRZroAzQB0M1XJf"
+    },
+    {
+        "type": "File",
+        "name": "c:\\Users\\Rxy\\Documents\\MYCODE\\LeetCode\\src\\main\\java\\mine\\leetcode\\zhao_qian\\CoinChangeII.java",
+        "parent_id": "dPRZroAzQB0M1XJf",
+        "fsPath": "c:\\Users\\Rxy\\Documents\\MYCODE\\LeetCode\\src\\main\\java\\mine\\leetcode\\zhao_qian\\CoinChangeII.java",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "98hJRUSVMFTwnQv5"
+    },
+    {
+        "type": "Directory",
+        "name": "c:\\Users\\Rxy\\Documents\\MYCODE\\LeetCode\\src\\main\\java\\mine\\pack9",
+        "parent_id": null,
+        "fsPath": "c:\\Users\\Rxy\\Documents\\MYCODE\\LeetCode\\src\\main\\java\\mine\\pack9",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "trhB7SU20yVcqDRY"
+    }
+]

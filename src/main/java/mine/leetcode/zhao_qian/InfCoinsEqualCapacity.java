@@ -17,6 +17,9 @@ public class InfCoinsEqualCapacity {
         solve(S, value);
     }
 
+    public InfCoinsEqualCapacity() {
+    }
+
     private int[] dp;//
     private int[] value;
 
@@ -63,8 +66,56 @@ public class InfCoinsEqualCapacity {
         return ans;
     }
 
+    int[] coinLast;
+    private int amount;
+
     // down-top
+    public int dpSolve(int amount, int[] coins) {
+        Arrays.sort(coins);
+        this.amount = amount;
+        coinLast = new int[amount + 1];
+        dp = new int[amount + 1];
+        int LARGE = Integer.MAX_VALUE >> 1;
+        for (int i = 0; i < dp.length; i++) {
+            dp[i] = (LARGE);
+        }
+        dp[0] = 0;
+        coinLast[0] = 0;
+        for (int i = 1; i < dp.length; i++) {
+            int min = LARGE;
+            int idx = -1;
+            for (int j = 0; j < coins.length && coins[j] <= i; j++) {
+                if (min > 1 + dp[i - coins[j]]) {
+                    min = 1 + dp[i - coins[j]];
+                    idx = j;
+                }
+            }
+            dp[i] = min;
+            if (idx != -1)
+                coinLast[i] = coins[idx];
+        }
+        return dp[amount] >= LARGE ? -1 : dp[amount];
+    }
+
+    public int[] coinList() {
+        if (dp[amount] < (Integer.MAX_VALUE >> 1)) {
+            int[] res = new int[dp[amount]];
+            int j = amount;
+            int i = 0;
+            while (j > 0) {
+                res[i++] = coinLast[j];
+                j -= coinLast[j];
+            }
+            return res;
+        } else
+            return null;
+    }
 
     public static void main(String[] args) {
+        InfCoinsEqualCapacity t = new InfCoinsEqualCapacity();
+        int[] sets = new int[] { 7, 29, 31, 991 };
+        for (int i = 100; i < 1100; i++) {
+            System.out.println(i + " : " + t.dpSolve(i, sets) + " --- " + Arrays.toString(t.coinList()));
+        }
     }
 }

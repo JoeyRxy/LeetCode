@@ -1,17 +1,33 @@
 package mine.leetcode.stone_game;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * StoneGame1
+ * <p>
+ * Alex and Lee play a game with piles of stones.&nbsp; There are an even number
+ * of&nbsp;piles <strong>arranged in a row</strong>, and each pile has a
+ * positive integer number of stones <code>piles[i]</code>.
+ * </p>
+ * <p>
+ * The objective of the game is to end with the most&nbsp;stones.&nbsp; The
+ * total number of stones is odd, so there are no ties.
+ * </p>
+ * <p>
+ * Alex and Lee take turns, with Alex starting first.&nbsp; Each turn, a
+ * player&nbsp;takes the entire pile of stones from either the beginning or the
+ * end of the row.&nbsp; This continues until there are no more piles left, at
+ * which point the person with the most stones wins.
+ * </p>
+ * <p>
+ * Assuming Alex and Lee play optimally, return <code>True</code>&nbsp;if and
+ * only if Alex wins the game.
+ * </p>
  * 
- * @see
  */
 public class StoneGame1 {
 
     private int[] piles;
 
-    public boolean stoneGame(@NotNull int[] piles) {
+    public boolean stoneGame(int[] piles) {
         this.piles = piles;
         int A = first(0, piles.length - 1);
         System.out.println(A);
@@ -87,7 +103,7 @@ public class StoneGame1 {
             return first(i, j - 1);
     }
 
-    public boolean DP(int[] piles) {
+    public boolean dp(int[] piles) {
         int n = piles.length;
 
         int[][] dpA, dpB;
@@ -119,16 +135,43 @@ public class StoneGame1 {
         }
         int a = dpA[0][n - 1];
         int b = dpB[0][n - 1];
-        System.out.println("A : " + a + " ,B : " + b);
+        // System.out.println("A : " + a + " ,B : " + b);
         return a > b;
     }
 
+    // f[i, j] 记为先手能从[i ,j]中获得的最大值
+    // f[i, j] = max(piles[i] + s[i + 1, j] - f[i + 1, j], piles[j] + s[i, j - 1] -
+    // f[i, j - 1])
+    private int[][] s;// s[i][j] = sum of piles[i,...j]
+    private int[][] f;
+
+    public boolean ans(int[] piles) {
+        int n = piles.length;
+        s = new int[n][n];
+        f = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            s[i][i] = piles[i];
+            f[i][i] = piles[i];
+        }
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++)
+                s[i][j] = piles[j] + s[i][j - 1];
+        //
+        for (int col = 1; col < n; col++) {
+            int i = 0, j = col;
+            while (j < n) {
+                f[i][j] = Math.max(piles[i] + s[i + 1][j] - f[i + 1][j], piles[j] + s[i][j - 1] - f[i][j - 1]);
+                i++;
+                j++;
+            }
+        }
+        return (f[0][n - 1] << 1) > s[0][n - 1];
+    }
+
     public static void main(String[] args) {
-        int[] piles = { 4, 7, 1 };
+        int[] piles = { 3, 7, 1 };
         StoneGame1 game = new StoneGame1();
-        boolean aWin = game.stoneGame(piles);
-        System.out.println(aWin);
-        boolean res = game.DP(piles);
-        System.out.println("is A win? " + res);
+        boolean ans = game.ans(piles);
+        System.out.println(ans);
     }
 }
