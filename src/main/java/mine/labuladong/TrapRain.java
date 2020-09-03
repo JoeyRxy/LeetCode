@@ -4,15 +4,46 @@ package mine.labuladong;
  * TrapRain
  * <p>
  * https://leetcode.com/problems/trapping-rain-water/
+ * <p>
+ * https://labuladong.gitbook.io/algo/gao-pin-mian-shi-xi-lie/jie-yu-shui
  */
 public class TrapRain {
 
     public int trap(int[] height) {
-
-        return improved(height);
+        return doublePointer(height);
     }
 
     /**
+     * O(N)=N
+     * <p>
+     * 双指针
+     * 
+     * @param height
+     * @return
+     */
+    private int doublePointer(int[] height) {
+        int lMax = height[0], rMax = height[height.length - 1];
+        int left = 0, right = height.length - 1;
+
+        int res = 0;
+
+        while (left <= right) {
+            lMax = Math.max(lMax, height[left]);
+            rMax = Math.max(rMax, height[right]);
+            if (lMax < rMax) {
+                res += (lMax - height[left]);
+                ++left;
+            } else {
+                res += (rMax - height[right]);
+                --right;
+            }
+        }
+        return res;
+    }
+
+    /**
+     * O(N)
+     * <p>
      * 分两次进行；每次只找出当前点i左（右）侧的最大值；这样就可以 “在线处理” 了
      */
     private int improved(int[] height) {

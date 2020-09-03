@@ -13,11 +13,11 @@
 ## 接口和适用范围
 
 ### 接口
-| API                            | SegMentTree  | BinaryIndexedTree | QuickSum... |
+| API                            | SegmentTree  | BinaryIndexedTree | QuickSum... |
 | ------------------------------ | :----------: | :---------------: | :---------: |
-| `Update(int index, Value val)` | O($\log{n})$ |   O($\log{n}$)    |   O($n$)    |
-| `RangeSum(int i, int j)`       | O($\log{n})$ |   O($\log{n}$)    |    O(1)     |
-| PrefixSum(int i)               |      -       |   O($\log{n}$)    |      -      |
+| `Update(int index, Value val)` | $O(\log{n})$ |   $O(\log{n})$    |   $O(n)$    |
+| `RangeSum(int i, int j)`       | $O(\log{n})$ |   $O(\log{n})$    |   $O(1)$    |
+| `PrefixSum(int i)`             |      -       |   $O(\log{n})$    |      -      |
 
 ### 需求
 

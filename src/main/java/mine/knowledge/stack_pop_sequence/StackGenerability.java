@@ -1,7 +1,5 @@
 package mine.knowledge.stack_pop_sequence;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Stack;
 
 /**
@@ -13,7 +11,7 @@ public class StackGenerability {
     private int N;
     private int[] rank;
 
-    public StackGenerability(@NotNull String original) {
+    public StackGenerability(String original) {
         this.original = original;
         this.N = original.length();
         this.rank = new int[128];
@@ -21,7 +19,7 @@ public class StackGenerability {
             rank[original.charAt(i)] = i;
     }
 
-    public boolean isGenable(@NotNull String str) {
+    public boolean isGenable(String str) {
         if (str.length() != N)
             return false;
         Stack<Character> stack = new Stack<>();

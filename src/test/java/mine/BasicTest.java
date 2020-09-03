@@ -3,7 +3,6 @@ package mine;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,9 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Callable;
-
-import javax.security.auth.callback.Callback;
 
 import org.junit.Test;
 
@@ -62,19 +58,7 @@ public class BasicTest {
             matrices[i] = new Matrix(matrices[i - 1].size()[1], r.nextInt(bound) + 1);
             matrices[i].randomInit(muliple);
         }
-        // Matrix[] matrices = new Matrix[6];
-        // matrices[0] = new Matrix(30, 35);
-        // matrices[0].randomInit(3);
-        // matrices[1] = new Matrix(35, 15);
-        // matrices[1].randomInit(3);
-        // matrices[2] = new Matrix(15, 5);
-        // matrices[2].randomInit(3);
-        // matrices[3] = new Matrix(5, 10);
-        // matrices[3].randomInit(3);
-        // matrices[4] = new Matrix(10, 20);
-        // matrices[4].randomInit(3);
-        // matrices[5] = new Matrix(20, 15);
-        // matrices[5].randomInit(3);
+
         String file = Matrix.class.getClassLoader().getResource("").getFile() + "matrixParenthesis.txt";
         BufferedWriter writer = new BufferedWriter(new FileWriter(new File(file)));
         writer.write("共有 " + matrices.length + " 个矩阵\n\n");
@@ -234,5 +218,25 @@ public class BasicTest {
         }
         fileInputStream.close();
         fileOutputStream.close();
+    }
+
+    @Test
+    public void testBitOpt() {
+        int x = 7;
+        System.out.println(x ^ 1);
+    }
+
+    @Test
+    public void testIntMin() {
+        int min = 0x80000000;
+        System.out.println(min);
+    }
+
+    @Test
+    public void testNullString() {
+        String str1 = null;
+        String str2 = new String();
+        System.out.println(str2.length());
+        System.out.println(str2 == null);
     }
 }
