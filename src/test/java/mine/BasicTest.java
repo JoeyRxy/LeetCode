@@ -58,19 +58,7 @@ public class BasicTest {
             matrices[i] = new Matrix(matrices[i - 1].size()[1], r.nextInt(bound) + 1);
             matrices[i].randomInit(muliple);
         }
-        // Matrix[] matrices = new Matrix[6];
-        // matrices[0] = new Matrix(30, 35);
-        // matrices[0].randomInit(3);
-        // matrices[1] = new Matrix(35, 15);
-        // matrices[1].randomInit(3);
-        // matrices[2] = new Matrix(15, 5);
-        // matrices[2].randomInit(3);
-        // matrices[3] = new Matrix(5, 10);
-        // matrices[3].randomInit(3);
-        // matrices[4] = new Matrix(10, 20);
-        // matrices[4].randomInit(3);
-        // matrices[5] = new Matrix(20, 15);
-        // matrices[5].randomInit(3);
+
         String file = Matrix.class.getClassLoader().getResource("").getFile() + "matrixParenthesis.txt";
         BufferedWriter writer = new BufferedWriter(new FileWriter(new File(file)));
         writer.write("共有 " + matrices.length + " 个矩阵\n\n");

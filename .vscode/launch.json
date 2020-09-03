@@ -6,6 +6,54 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - SegmentTree2",
+            "request": "launch",
+            "mainClass": "mine.knowledge.seg_tree_binary_indexed_tree.SegmentTree2",
+            "projectName": "Algo"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ShotestHamilton",
+            "request": "launch",
+            "mainClass": "mine.suanfajingsaijinjiezhinan.sec0.ShotestHamilton",
+            "projectName": "Algo",
+            "stepFilters": {
+                "classNameFilters": [
+                    "java.*",
+                    "javax.*",
+                    "com.sun.*",
+                    "sun.*",
+                    "sunw.*",
+                    "org.omg.*"
+                ],
+                "skipSynthetics": false,
+                "skipStaticInitializers": false,
+                "skipConstructors": false
+            }
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ValidateBST",
+            "request": "launch",
+            "mainClass": "mine.leetcode.ValidateBST",
+            "projectName": "Algo"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - QuickPow",
+            "request": "launch",
+            "mainClass": "mine.suanfajingsaijinjiezhinan.sec0.QuickPow",
+            "projectName": "Algo"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - IncDecSeqence",
+            "request": "launch",
+            "mainClass": "mine.leetcode.inc_dec_seq.IncDecSeqence",
+            "projectName": "Algo"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - EditDistance",
             "request": "launch",
             "mainClass": "mine.leetcode.edit_dist.EditDistance",

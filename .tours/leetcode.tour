@@ -1,0 +1,31 @@
+{
+  "title": "Regex",
+  "steps": [
+    {
+      "file": "src/main/java/mine/leetcode/RegularExpression.java",
+      "line": 9,
+      "description": "# 尾递归优化"
+    },
+    {
+      "file": "src/main/java/mine/leetcode/RegularExpression.java",
+      "line": 31,
+      "description": "# 转移方程\r\nf[i, j]代表s[0, i)与p[0, j)的匹配情况。\r\n对p当前的字符分类讨论：\r\n1) 若p[j-1] != '*': 如果s的当前字符s[i-1]与p[j-1]匹配(matches)，那么f[i, j]=f[i-1, j-1]\r\n2) 若p[j-1] == '*':\r\n当p的前一个字符p[j-2]与s的当前字符s[i-1]匹配：\r\n- 如果'*'代表0个匹配，则f[i, j]=f[i, j-2]\r\n- 如果'*'代表至少1个匹配，则f[i, j]=f[i-1, j]//有待理解\r\n否则，'*'只能匹配0个：\r\n- f[i, j]=f[i, j-2]",
+      "selection": {
+        "start": {
+          "line": 25,
+          "character": 17
+        },
+        "end": {
+          "line": 31,
+          "character": 47
+        }
+      }
+    },
+    {
+      "file": "src/main/java/mine/leetcode/RegularExpression.java",
+      "line": 17,
+      "description": "# Init\r\n为什么要这么初始化？\r\n- 为了防止p是`a*`的形式，这样就没有p[j-2]了"
+    }
+  ],
+  "ref": "master"
+}
